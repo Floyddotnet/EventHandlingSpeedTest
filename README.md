@@ -31,22 +31,24 @@ Die Tests:
 	-------
 	
 	Aufruf über DynamicMethod und der Emit-API.
+	
+	HandleEventsReflectionCodeDom
+	-------
+	
+	Dynamisches erzeugen von C#-Code (Switch-Case-Block) und Invoke über Reflection
 		
 Ergebnis für 1.000.000 Events:
 =============
 
-Result for 'HandlesDynamic': 9891ms
-Result for 'HandlesDynamic': 3834ms
-
-Result for 'HandlesCaseWhen': 77ms
-Result for 'HandlesCaseWhen': 76ms
-
-Result for 'HandleEventsReflection': 298ms
-Result for 'HandleEventsReflection': 292ms
-
-Result for 'HandleEventsReflectionDelegate': 1358ms
-Result for 'HandleEventsReflectionDelegate': 1286ms
-
-Result for 'HandleEventsReflectionFastInvoke': 1370ms
-Result for 'HandleEventsReflectionFastInvoke': 1327ms
-
+* Result for 'HandlesDynamic': 4549ms
+* Result for 'HandlesDynamic': 3984ms
+* Result for 'HandlesCaseWhen': 78ms
+* Result for 'HandlesCaseWhen': 76ms
+* Result for 'HandleEventsReflection': 299ms
+* Result for 'HandleEventsReflection': 288ms
+* Result for 'HandleEventsReflectionDelegate': 1351ms
+* Result for 'HandleEventsReflectionDelegate': 1315ms
+* Result for 'HandleEventsReflectionCodeDom': 551ms
+* Result for 'HandleEventsReflectionCodeDom': 331ms
+* Result for 'HandleEventsReflectionFastInvoke': 1366ms
+* Result for 'HandleEventsReflectionFastInvoke': 1369ms
