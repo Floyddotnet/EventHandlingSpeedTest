@@ -46,6 +46,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Events.tt</DependentUpon>
     </Compile>
+    <Compile Include="HandleEventsReflectionCodeDom.cs" />
     <Compile Include="HandleEventsReflectionFastInvoke.cs" />
     <Compile Include="HandleEventsReflectionDelegate.cs" />
     <Compile Include="HandleEventsReflection.cs" />

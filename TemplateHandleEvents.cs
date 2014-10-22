@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using EventHandlingSpeedTest.Events;
+using Microsoft.CSharp;
 
 namespace EventHandlingSpeedTest
 {
@@ -67,6 +69,85 @@ namespace EventHandlingSpeedTest
 		}
 	}
 
+
+	public abstract class HandleEventsReflectionCodeDom<T>
+	{
+		private static MethodInfo switchMethod;
+
+		static HandleEventsReflectionCodeDom()
+		{
+			BuildHandleEventsCache();
+		}
+
+		public static void InvokeHandle(object @event)
+		{
+			switchMethod.Invoke(null, new[] { @event });
+		}
+
+		private static void BuildHandleEventsCache()
+		{
+			var listOfHandleEventsMethods = typeof(T).GetMethods(BindingFlags.Static | BindingFlags.Public).Where(m => m.Name == "Handles");
+
+			var sbSwitch = new StringBuilder();
+			foreach (var methodInfo in listOfHandleEventsMethods)
+			{
+				sbSwitch.AppendLine(string.Format("case \"{0}\": {1}.Handles(({0})Event); break;", methodInfo.GetParameters()[0].ParameterType.Name, typeof(T).Name));
+			}
+
+			string source = string.Format(@"
+				using EventHandlingSpeedTest.Events;
+				using EventHandlingSpeedTest;
+
+        public static class HandleHelper
+        {{
+            public static void Handle(object Event)
+            {{
+            	switch (Event.GetType().ToString())
+							{{
+								{0}
+							}}
+            }}
+        }}
+			", sbSwitch);
+
+			CSharpCodeProvider provider = new CSharpCodeProvider();
+			CompilerParameters parameters = new CompilerParameters {GenerateInMemory = true, GenerateExecutable = false};
+
+			foreach (Assembly _assembly in AppDomain.CurrentDomain.GetAssemblies())
+			{
+				try
+				{
+					string location = _assembly.Location;
+					if (!String.IsNullOrEmpty(location))
+					{
+						parameters.ReferencedAssemblies.Add(location);
+					}
+				}
+				catch (NotSupportedException)
+				{
+					// this happens for dynamic assemblies, so just ignore it. 
+				}
+			} 
+
+			CompilerResults results = provider.CompileAssemblyFromSource(parameters, source);
+
+			if (results.Errors.HasErrors)
+			{
+				StringBuilder sb = new StringBuilder();
+
+				foreach (CompilerError error in results.Errors)
+				{
+					sb.AppendLine(String.Format("Error ({0}): {1}", error.ErrorNumber, error.ErrorText));
+				}
+
+				throw new InvalidOperationException(sb.ToString());
+			}
+
+			Assembly assembly = results.CompiledAssembly;
+			Type program = assembly.GetType("HandleHelper");
+			switchMethod = program.GetMethod("Handle");
+		}
+	}
 
 	public abstract class HandleEventsReflectionFastInvoke<T>
 	{

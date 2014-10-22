@@ -22,6 +22,7 @@ namespace EventHandlingSpeedTest
 			MeasurePerformance(HandleEvents.InvokeCaseWhenHandles, "HandlesCaseWhen");
 			MeasurePerformance(HandleEventsReflection.InvokeHandle, "HandleEventsReflection");
 			MeasurePerformance(HandleEventsReflectionDelegate.InvokeHandle, "HandleEventsReflectionDelegate");
+			MeasurePerformance(HandleEventsReflectionCodeDom.InvokeHandle, "HandleEventsReflectionCodeDom");
 			MeasurePerformance(HandleEventsReflectionFastInvoke.InvokeHandle, "HandleEventsReflectionFastInvoke");
 			
 			Console.WriteLine(events.Count);
