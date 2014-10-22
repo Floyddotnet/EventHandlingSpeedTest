@@ -35,18 +35,18 @@ Die Tests:
 Ergebnis für 1.000.000 Events:
 =============
 
-Result for 'HandlesDynamic': 9891ms
-Result for 'HandlesDynamic': 3834ms
+* Result for 'HandlesDynamic': 9891ms
+* Result for 'HandlesDynamic': 3834ms
 
-Result for 'HandlesCaseWhen': 77ms
-Result for 'HandlesCaseWhen': 76ms
+* Result for 'HandlesCaseWhen': 77ms
+* Result for 'HandlesCaseWhen': 76ms
 
-Result for 'HandleEventsReflection': 298ms
-Result for 'HandleEventsReflection': 292ms
+* Result for 'HandleEventsReflection': 298ms
+* Result for 'HandleEventsReflection': 292ms
 
-Result for 'HandleEventsReflectionDelegate': 1358ms
-Result for 'HandleEventsReflectionDelegate': 1286ms
+* Result for 'HandleEventsReflectionDelegate': 1358ms
+* Result for 'HandleEventsReflectionDelegate': 1286ms
 
-Result for 'HandleEventsReflectionFastInvoke': 1370ms
-Result for 'HandleEventsReflectionFastInvoke': 1327ms
+* Result for 'HandleEventsReflectionFastInvoke': 1370ms
+* Result for 'HandleEventsReflectionFastInvoke': 1327ms
 
