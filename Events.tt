@@ -1,0 +1,33 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+
+namespace EventHandlingSpeedTest.Events
+{
+	<#foreach(var i in Enumerable.Range(1,100)){#>
+		public class Event<#=i#> {
+					public string Name { get { return ToString(); } }
+		}
+	<#}#>
+
+	/*
+	<#foreach(var i in Enumerable.Range(1,100)){#>
+		public static void Handles(Event<#=i#> Event) { Console.WriteLine(Event); }
+	<#}#>
+
+	public static void InvokeCaseWhenHandles(object Event)
+		{
+			switch (Event.GetType().ToString())
+			{
+				<#foreach(var i in Enumerable.Range(1,100)){#>
+					case "Event<#=i#>": Handles((Event<#=i#>)Event); break;
+				<#}#>
+			}
+		}
+
+	
+	*/
+}
