@@ -30,7 +30,7 @@ Die Tests:
 	
 ## HandleEventsReflectionCodeDom ##
 	
-	Dynamisches erzeugen von C##-Code (Switch-Case-Block) und Invoke über Reflection
+	Dynamisches erzeugen von C#-Code (Switch-Case-Block) und Invoke über Reflection
 		
 ## HandleEventsReflectionT4 ##
 	
