@@ -8,31 +8,31 @@ Test-Setup:
 Die Tests:
 =============
 
-	# HandlesDynamic #
+# HandlesDynamic #
 	
 	Aufruf mit dynmaic-Cast
 	
-	# HandlesCaseWhen #
+# HandlesCaseWhen #
 	
 	Vergleichsmessung mit einer SwitchCase-Fallunterscheidung
 		
-	# HandleEventsReflection #
+# HandleEventsReflection #
 		
 	Die jeweiligen Methodinfo's werden ermittelt und gecached.
 	
-	# HandleEventsReflectionDelegate #
+# HandleEventsReflectionDelegate #
 	
 	Aufruf über eine per Dynamic-Expression erzeugtes Delegate welches gecached wird.
 		
-	# HandleEventsReflectionFastInvoke #
+# HandleEventsReflectionFastInvoke #
 	
 	Aufruf über DynamicMethod und der Emit-API.
 	
-	# HandleEventsReflectionCodeDom #
+# HandleEventsReflectionCodeDom #
 	
 	Dynamisches erzeugen von C#-Code (Switch-Case-Block) und Invoke über Reflection
 		
-	# HandleEventsReflectionT4 #
+# HandleEventsReflectionT4 #
 	
 	Switch-Case Codegenerierung per T4-Template
 	
