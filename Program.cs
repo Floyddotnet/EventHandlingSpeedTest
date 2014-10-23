@@ -18,12 +18,13 @@ namespace EventHandlingSpeedTest
 		{
 			BuildEvents();
 
-			MeasurePerformance((@event) => HandleEvents.Handles((dynamic)@event), "HandlesDynamic");
+			//MeasurePerformance((@event) => HandleEvents.Handles((dynamic)@event), "HandlesDynamic");
 			MeasurePerformance(HandleEvents.InvokeCaseWhenHandles, "HandlesCaseWhen");
 			MeasurePerformance(HandleEventsReflection.InvokeHandle, "HandleEventsReflection");
 			MeasurePerformance(HandleEventsReflectionDelegate.InvokeHandle, "HandleEventsReflectionDelegate");
 			MeasurePerformance(HandleEventsReflectionCodeDom.InvokeHandle, "HandleEventsReflectionCodeDom");
 			MeasurePerformance(HandleEventsReflectionFastInvoke.InvokeHandle, "HandleEventsReflectionFastInvoke");
+			MeasurePerformance(ReadModel.HandleEventsReflectionT4.InvokeHandle, "HandleEventsReflectionT4");
 			
 			Console.WriteLine(events.Count);
 			Console.ReadKey();
@@ -39,7 +40,7 @@ namespace EventHandlingSpeedTest
 					action.Invoke(@event);
 				}
 				sw.Stop();
-				Console.WriteLine("Result for '{0}': {1}", name, sw.ElapsedMilliseconds);
+				Console.WriteLine("* Result for '{0}': {1}ms", name, sw.ElapsedMilliseconds);
 			}
 		}
 

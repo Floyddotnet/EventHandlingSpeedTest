@@ -1,0 +1,62 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)bin\Debug\EventHandlingSpeedTest.exe" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Linq.Expressions" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="EventHandlingSpeedTest" #>
+<#@ output extension=".cs" #>
+<#
+
+/*
+	
+	T4-Templates in dieser Variante haben eine entscheidende Besonderheite: das Double-Compile-Problem.
+	Damit das Transformationsscript per Reflection auf die ReadModels zugreifen und diese erweitern kann, müssen diese bereits kompiliert sein.
+	Daraus ergibt sich folgende Arbeitsweise:
+
+	1. Änderung am ReadModel
+	2. Compilieren
+	3. T4-Transformation starten
+	4. erneut Compilieren
+
+	Alternativ kann man auch im T4-Template eine Methoden benutzen und diese statisch/manuell für alle ReadModels aufrufen. 
+	Dadurch fällt dann Schritt 2 Weg. Diesen Weg würde ich dann auch bevorzugen solange es keinen T4-Compiler mit Roslyn-Interface gibt.
+	
+*/
+
+#>
+using EventHandlingSpeedTest.Events;
+
+namespace EventHandlingSpeedTest.ReadModel
+{
+	<#
+		var readModels = typeof(EventHandlingSpeedTest.HandleEvents).Assembly.GetTypes().Where(t => t.IsClass && t.Namespace == "EventHandlingSpeedTest.ReadModel");
+		foreach(var readModel in readModels){
+			#>
+				public partial class <#=readModel.Name#>
+				{
+					public static void InvokeHandle(object Event)
+					{
+						switch (Event.GetType().ToString())
+						{
+
+							<#
+								var readModelHandlers = readModel.GetMethods(BindingFlags.Static | BindingFlags.Public).Where(m => m.Name == "Handles");
+								foreach(var readModelHandler in readModelHandlers){
+									var eventType = readModelHandler.GetParameters()[0].ParameterType;
+									#>
+										case "<#=eventType.Name#>": Handles((<#=eventType.Name#>)Event); break;
+									<#
+								}
+							#>
+
+						}
+					}
+				}
+			<#
+		}
+	#>
+}

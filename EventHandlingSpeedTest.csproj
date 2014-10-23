@@ -41,6 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HandleEventsReflectionT4.cs" />
+    <Compile Include="HandleEventsT4.cs">
+      <DependentUpon>HandleEventsT4.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Events.Events.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -57,6 +63,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="HandleEventsT4.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>HandleEventsT4.cs</LastGenOutput>
+    </None>
     <None Include="Events.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Events.Events.cs</LastGenOutput>
