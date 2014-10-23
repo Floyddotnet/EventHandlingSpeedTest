@@ -1,7 +1,7 @@
 Test-Setup:
 =============
 
-	Gegeben sind 100 Event-Klasse (Event1, Event2, ....) sowie verschiedene Klasse mit dem Namen HandleEvents* die jeweils 100 Handle-Methode für jedes einzelne Event haben
+	Gegeben sind 100 Event-Klasse (Event1, Event2, ....) sowie verschiedene Klasse mit dem Namen HandleEvents* die jeweils 100 Handle-Methode fÃ¼r jedes einzelne Event haben
 	
 	Jede HandleEvents*-Klasse bildet einen oder mehrere Aufrufvarianten ab
 	
@@ -12,7 +12,7 @@ Die Tests:
 	
 	Aufruf mit dynmaic-Cast
 	
-##s HandlesCaseWhen ##
+## HandlesCaseWhen ##
 	
 	Vergleichsmessung mit einer SwitchCase-Fallunterscheidung
 		
@@ -22,21 +22,21 @@ Die Tests:
 	
 ## HandleEventsReflectionDelegate ##
 	
-	Aufruf über eine per Dynamic-Expression erzeugtes Delegate welches gecached wird.
+	Aufruf Ã¼ber eine per Dynamic-Expression erzeugtes Delegate welches gecached wird.
 		
 ## HandleEventsReflectionFastInvoke ##
 	
-	Aufruf über DynamicMethod und der Emit-API.
+	Aufruf Ã¼ber DynamicMethod und der Emit-API.
 	
 ## HandleEventsReflectionCodeDom ##
 	
-	Dynamisches erzeugen von C##-Code (Switch-Case-Block) und Invoke über Reflection
+	Dynamisches erzeugen von C##-Code (Switch-Case-Block) und Invoke Ã¼ber Reflection
 		
 ## HandleEventsReflectionT4 ##
 	
 	Switch-Case Codegenerierung per T4-Template
 	
-Ergebnis für 1.000.000 Events:
+Ergebnis fÃ¼r 1.000.000 Events:
 =============
 
 * Result for 'HandlesDynamic': 4549ms
