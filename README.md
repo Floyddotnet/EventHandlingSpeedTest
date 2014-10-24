@@ -53,3 +53,8 @@ Ergebnis für 1.000.000 Events:
 * Result for 'HandleEventsReflectionFastInvoke': 1369ms
 * Result for 'HandleEventsReflectionT4': 77ms
 * Result for 'HandleEventsReflectionT4': 76ms
+
+Skallierung der Laufzeit als Diagramm:
+=============
+![picture alt](http://imagizer.imageshack.com/img910/6154/jT3pmV.png "Skallierung")
+
