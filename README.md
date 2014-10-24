@@ -56,5 +56,5 @@ Ergebnis für 1.000.000 Events:
 
 Skallierung der Laufzeit als Diagramm:
 =============
-![picture alt](http://imagizer.imageshack.com/img910/6154/jT3pmV.png "Skallierung")
+![picture alt](http://imagizer.imageshack.com/img661/7564/iST6T0.png "Skallierung")
 
